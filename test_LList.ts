@@ -29,12 +29,19 @@ sl.display();
 sl.insert(d);
 sl.display();
 
+prt(" advance");
+let node = sl.find(a);
+prt(sl.advance(2,node));
+prt(sl.advance(3));
+prt(sl.count());
+
+prt("---- remove ")
 sl.remove(b);
 sl.display();
 
 sl.remove(a);
 sl.display();
-
+prt(sl.count());
 
 prt("------ DLList Test -----");
 
@@ -52,6 +59,12 @@ prt(dl.findLastNode());
 prt("-- insert tail");
 dl.insertTail(d);
 dl.display(); // a c b d
+
+prt("--- back");
+let nd = dl.find(d);
+// prt(nd);
+prt(dl.back(2,nd));
+prt(dl.back(4));
 
 prt("--- remove");
 dl.remove(c);

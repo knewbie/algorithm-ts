@@ -17,8 +17,10 @@ export class Node<T> {
 // single link list
 export class List<T> {
     public head: Node<T>;
+    public listSize: number;
     constructor() {
         this.head = new Node(null); // empty head
+        this.listSize = 0;
     }
 
     // find one Node with data elem, if not found ,return null
@@ -56,6 +58,7 @@ export class List<T> {
             newNode.next = findNode.next;
             findNode.next = newNode;
         }
+        this.listSize++;
     }
 
     // find the last node
@@ -78,6 +81,7 @@ export class List<T> {
         let node = new Node(elem);
         let lastNode = this.findLastNode();
         lastNode.next = node;
+        this.listSize++;
     }
 
     // remove an element , if success ,return true,eles false
@@ -88,6 +92,7 @@ export class List<T> {
             if(compare(cur.data, elem)) { // find the node
                 pre.next = cur.next;
                 cur = null; // delete the node
+                this.listSize--;
                 return true;
             }
             pre = cur;
@@ -96,6 +101,33 @@ export class List<T> {
         return false;
     }
 
+    // advance n node from current node
+    // if curr is null, the from the head advance n node
+    // else from the current node
+    // if n great the distance between currnode and the tail node,
+    // then return the tail node ,else return Nth node after the curr.
+    public advance(n:number, curr?:Node<T>):Node<T> {
+        if(this.listSize == 0) {
+            return null;
+        }
+        let cnt = 0;
+        curr = this.head.next;
+        while(curr) {
+            cnt++;
+            if(curr.next == null) {
+                return curr;
+            }
+            curr = curr.next;
+            if(cnt == n) {
+                return curr;
+            }
+        }
+        return null;
+    }
+
+    public count():number {
+        return this.listSize;
+    }
     // travse the list
     public display() {
         let node = this.head.next;
@@ -110,11 +142,11 @@ export class List<T> {
 // double linked list
 export class DLList<T> {
     private head: Node<T>;
-    // private tail: Node<T>;
+    private listSize:number;
 
     constructor() {
         this.head = new Node<T>(null);
-        // this.tail = new Node<T>(null);
+        this.listSize = 0;
     }
 
      public find(elem:T):Node<T> {
@@ -158,6 +190,7 @@ export class DLList<T> {
                 newNode.prev = findNode;
             }
         }
+        this.listSize++;
     }
 
     public findLastNode(): Node<T> {
@@ -179,6 +212,7 @@ export class DLList<T> {
         let lastNode = this.findLastNode();
         lastNode.next = node;
         node.prev = lastNode;
+        this.listSize++;
     }
 
     public remove(elem:T):boolean {
@@ -193,6 +227,7 @@ export class DLList<T> {
                     cur.next.prev = pre;
                 }
                 cur = null; // delete the node
+                this.listSize--;
                 return true;
             }
             pre = cur;
@@ -201,9 +236,37 @@ export class DLList<T> {
         return false;
     }
 
+    // back n node from current node
+    // if curr is null, then return the head node
+    // else from the current node back to head
+    // if n great the distance between currnode and the head node,
+    // then return the head node ,else return Nth node before the curr.
+    public back(n:number, curr?:Node<T>):Node<T> {
+        if(this.listSize == 0 || curr == undefined) {
+            return this.head;
+        }
+
+        let cnt = 0;
+        while(curr) {
+            cnt++;
+            if(curr.prev == null) {
+                return curr;
+            }
+            curr = curr.prev;
+            if(cnt == n) {
+                return curr;
+            }
+        }
+        return null;
+    }
+
+    public count():number {
+        return this.listSize;
+    }
+
     public display() {
+        console.log("display the list: ");
         let node = this.head.next;
-        console.log("display the list: ")
         while(node) {
             console.log(node.data);
             node = node.next;
@@ -211,6 +274,7 @@ export class DLList<T> {
     }
 
     public dispReverse() {
+        console.log("reverse display the list: ");
         let last = this.findLastNode();
         while(last.prev != null) {
             console.log(last.data);
@@ -222,10 +286,13 @@ export class DLList<T> {
 
 // circle linked list
 export class CLList<T> {
-    public head: Node<T>;
+    private head: Node<T>;
+    private listSize: number;
+
     constructor() {
         this.head = new Node(null); // empty head
         this.head.next = this.head;
+        this.listSize = 0;
     }
 
     public find(elem:T):Node<T> {
@@ -262,6 +329,7 @@ export class CLList<T> {
             newNode.next = findNode.next;
             findNode.next = newNode;
         }
+        this.listSize++;
     }
 
     public findLastNode(): Node<T> {
@@ -277,9 +345,9 @@ export class CLList<T> {
     public insertTail(elem:T) {
         let node = new Node(elem);
         let lastNode = this.findLastNode();
-        console.log(lastNode);
         node.next = this.head;
         lastNode.next = node;
+        this.listSize++;
     }
 
     public remove(elem:T):boolean {
@@ -289,6 +357,7 @@ export class CLList<T> {
             if(compare(cur.data, elem)) { // find the node
                 pre.next = cur.next;
                 cur = null; // delete the node
+                this.listSize--;
                 return true;
             }
             pre = cur;
@@ -298,8 +367,9 @@ export class CLList<T> {
     }
 
     public display() {
+        console.log("display the circle list: ");
+
         let node = this.head.next;
-        console.log("display the list: ")
         while(node != this.head) {
             console.log(node.data);
             node = node.next;
