@@ -11,7 +11,7 @@
     - [X] 单链表（List)
     - [X] 双向链表（DLList)
     - [X] 环链表（CLList)
-- [ ] 字典（Dict)
+- [X] 字典（Dict)
 - [ ] 散列（Hash)
 - [ ] 集合（Set)
 - [ ] 树（Tree)
