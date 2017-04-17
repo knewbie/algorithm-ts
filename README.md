@@ -12,16 +12,15 @@
     - [X] 双向链表（DLList)
     - [X] 环链表（CLList)
 - [X] 字典（Dict)
-- [ ] 集合（Set)
-- [ ] 树（Tree)
-    - [ ] 二叉树（BinaryTree)
-    - [ ] 二叉查找树（BST)
+- [X] 集合（Set)
+- [X] 二叉树（BiTree)
+    - [X] 二叉查找树（BST)
 - [ ] 图（Grap)
 
 
 （未完待续....)
 
-### How To Run
+### How To Run ＆ Test
 每个对应的数据结构都有一个test_XXX的测试文件，
 测试时需要先将TS文件用`tsc`编译器，编译为`js`文件，然后再用`node`执行对应的js文件：
 ```bash
