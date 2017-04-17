@@ -79,6 +79,17 @@ export class Set<T> {
         return tempSet;
     }
 
+    public difference(s: Set<T>): Set<T> {
+        let tempSet = new Set<T>();
+        for(let e of this.dataStore) {
+            if(!s.contains(e)) {
+                tempSet.add(deepcopy(e));
+            }
+        }
+
+        return tempSet;
+    }
+
     public subset(s: Set<T>): boolean {
         if (this.size() > s.size()) {
             return false;

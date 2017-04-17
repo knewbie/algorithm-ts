@@ -27,10 +27,19 @@ print(s.size(), s.getSet())
 let s1 = new Set<any>();
 s1.init([{ a: 1, b: [2, 4] }, { d: 3 }, "test", 342, true]);
 
+print("union op: s U s1")
 print(s.union(s1).getSet());
+
+print("intersect op: s & s1");
 print(s.intersect(s1).getSet());
+
+
+print("difference op: s D s1");
+print(s.difference(s1).getSet());
 
 let s2 = new Set<any>();
 s2.init(["Tim", { d: 3 }]);
+
+print("subset op: s2 S s");
 print(s2.subset(s));
 
