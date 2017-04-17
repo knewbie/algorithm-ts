@@ -17,6 +17,12 @@ export class BST<T> {
         this.root = null;
     }
 
+    public initWithArray(arr:T[]) {
+        for(let a of arr) {
+            this.insert(a);
+        }
+    }
+
     public insert(d: T) {
         let node = new TreeNode(d);
         if (this.root == null) {
