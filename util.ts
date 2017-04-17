@@ -2,6 +2,9 @@
  *  util.ts 
  */
 
+export let print = console.log;
+
+// compare basic type or complex object
 export function compare(x, y): boolean {
     // If both x and y are null or undefined and exactly the same 
     if (x === y) {
@@ -52,3 +55,30 @@ export function compare(x, y): boolean {
     }
     return true;
 };
+
+
+// deep copy object
+export function deepcopy(obj: any): any {
+    let copy: any;
+    if (isArray(obj)) {
+        copy = [];
+    } else if (isObject(obj)) {
+        copy ={};
+    } else {
+        return obj;
+    }
+    let keys = Object.keys(obj);
+    for(let idx in keys) {
+        let k = keys[idx];
+        copy[k] = deepcopy(obj[k]);
+    }
+    return copy;
+}
+
+export function isArray(obj: any): boolean {
+    return obj && typeof obj === 'object' && Array == obj.constructor;
+}
+
+export function isObject(obj: any): boolean {
+    return obj && typeof obj === 'object' && Object == obj.constructor;
+}
