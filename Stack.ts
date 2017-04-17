@@ -1,7 +1,7 @@
 
 export class Stack<T> {
     private dataStore: T[];
-    private top:number ;
+    private top: number;
 
     constructor() {
         this.dataStore = new Array<T>();
@@ -12,15 +12,15 @@ export class Stack<T> {
         this.dataStore[this.top++] = elem;
     }
 
-    public pop():T {
+    public pop(): T {
         return this.dataStore[--this.top];
     }
 
-    public peek():T{
+    public peek(): T {
         return this.dataStore[this.top - 1];
     }
 
-    public length():number {
+    public length(): number {
         return this.top;
     }
 

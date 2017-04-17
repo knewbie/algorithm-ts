@@ -2,7 +2,7 @@
  * List class implement
 */
 
-import {compare} from "./util";
+import { compare } from "./util";
 
 export class List<T> {
     private listSize: number;

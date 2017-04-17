@@ -1,13 +1,13 @@
 
-import {compare} from "./util";
+import { compare } from "./util";
 
 // Be shared with all list data struct
 export class Node<T> {
-    public data:T;
-    public next:any;
-    public prev:any;
-    
-    constructor(d:T) {
+    public data: T;
+    public next: any;
+    public prev: any;
+
+    constructor(d: T) {
         this.data = d;
         this.next = null;
         this.prev = null;
@@ -24,31 +24,31 @@ export class List<T> {
     }
 
     // find one Node with data elem, if not found ,return null
-    public find(elem:T):Node<T> {
-        if(elem == null) {
+    public find(elem: T): Node<T> {
+        if (elem == null) {
             return null;
         }
         let node = this.head.next;
-        while(node) {
-            if(compare(node.data, elem)){
+        while (node) {
+            if (compare(node.data, elem)) {
                 return node;
             }
             node = node.next;
         }
         return null;
-     }
+    }
 
     // insert a new element after elem, 
     // if elem ommits, the new element will insert to the tail by default
-    public insert(newElem:T, elem?:T) {
-        if(elem == undefined) {
+    public insert(newElem: T, elem?: T) {
+        if (elem == undefined) {
             this.insertTail(newElem);
             return;
         }
         let newNode = new Node<T>(newElem);
         let findNode = this.find(elem);
-        if(findNode == null) { // insert to tail
-            if(this.head.next == null) { // this first node
+        if (findNode == null) { // insert to tail
+            if (this.head.next == null) { // this first node
                 this.head.next = newNode;
             } else {
                 let lastNode = this.findLastNode();
@@ -64,11 +64,11 @@ export class List<T> {
     // find the last node
     public findLastNode(): Node<T> {
         let node = this.head.next;
-        if(node == null) {
+        if (node == null) {
             return this.head;
         } else {
             let pre = null;
-            while(node) {
+            while (node) {
                 pre = node;
                 node = node.next;
             }
@@ -77,7 +77,7 @@ export class List<T> {
     }
 
     // insert elem to the list tail
-    public insertTail(elem:T) {
+    public insertTail(elem: T) {
         let node = new Node(elem);
         let lastNode = this.findLastNode();
         lastNode.next = node;
@@ -85,11 +85,11 @@ export class List<T> {
     }
 
     // remove an element , if success ,return true,eles false
-    public remove(elem:T):boolean {
+    public remove(elem: T): boolean {
         let pre = this.head;
         let cur = pre.next;
-        while(cur != null) {
-            if(compare(cur.data, elem)) { // find the node
+        while (cur != null) {
+            if (compare(cur.data, elem)) { // find the node
                 pre.next = cur.next;
                 cur = null; // delete the node
                 this.listSize--;
@@ -106,33 +106,33 @@ export class List<T> {
     // else from the current node
     // if n great the distance between currnode and the tail node,
     // then return the tail node ,else return Nth node after the curr.
-    public advance(n:number, curr?:Node<T>):Node<T> {
-        if(this.listSize == 0) {
+    public advance(n: number, curr?: Node<T>): Node<T> {
+        if (this.listSize == 0) {
             return null;
         }
         let cnt = 0;
         curr = this.head.next;
-        while(curr) {
+        while (curr) {
             cnt++;
-            if(curr.next == null) {
+            if (curr.next == null) {
                 return curr;
             }
             curr = curr.next;
-            if(cnt == n) {
+            if (cnt == n) {
                 return curr;
             }
         }
         return null;
     }
 
-    public count():number {
+    public count(): number {
         return this.listSize;
     }
     // travse the list
     public display() {
         let node = this.head.next;
         console.log("display the list: ")
-        while(node) {
+        while (node) {
             console.log(node.data);
             node = node.next;
         }
@@ -142,36 +142,36 @@ export class List<T> {
 // double linked list
 export class DLList<T> {
     private head: Node<T>;
-    private listSize:number;
+    private listSize: number;
 
     constructor() {
         this.head = new Node<T>(null);
         this.listSize = 0;
     }
 
-     public find(elem:T):Node<T> {
-        if(elem == null) {
+    public find(elem: T): Node<T> {
+        if (elem == null) {
             return null;
         }
         let node = this.head.next;
-        while(node) {
-            if(compare(node.data, elem)){
+        while (node) {
+            if (compare(node.data, elem)) {
                 return node;
             }
             node = node.next;
         }
         return null;
-     }
+    }
 
-    public insert(newElem:T, elem?:T) {
-        if(elem == undefined) {
+    public insert(newElem: T, elem?: T) {
+        if (elem == undefined) {
             this.insertTail(newElem);
             return;
         }
         let newNode = new Node<T>(newElem);
         let findNode = this.find(elem);
-        if(findNode == null) { // insert to tail
-            if(this.head.next == null) { // this first node
+        if (findNode == null) { // insert to tail
+            if (this.head.next == null) { // this first node
                 this.head.next = newNode;
                 newNode.prev = this.head;
             } else {
@@ -180,7 +180,7 @@ export class DLList<T> {
                 newNode.prev = lastNode;
             }
         } else { // insert after the found node
-            if(findNode.next == null) {
+            if (findNode.next == null) {
                 findNode.next = newNode;
                 newNode.prev = findNode;
             } else {
@@ -195,11 +195,11 @@ export class DLList<T> {
 
     public findLastNode(): Node<T> {
         let node = this.head.next;
-        if(node == null) {
+        if (node == null) {
             return this.head;
         } else {
             let pre = null;
-            while(node) {
+            while (node) {
                 pre = node;
                 node = node.next;
             }
@@ -207,7 +207,7 @@ export class DLList<T> {
         }
     }
 
-    public insertTail(elem:T) {
+    public insertTail(elem: T) {
         let node = new Node(elem);
         let lastNode = this.findLastNode();
         lastNode.next = node;
@@ -215,12 +215,12 @@ export class DLList<T> {
         this.listSize++;
     }
 
-    public remove(elem:T):boolean {
+    public remove(elem: T): boolean {
         let pre = this.head;
         let cur = pre.next;
-        while(cur != null) {
-            if(compare(cur.data, elem)) { // find the node
-                if(cur.next == null) { // cur is the last node
+        while (cur != null) {
+            if (compare(cur.data, elem)) { // find the node
+                if (cur.next == null) { // cur is the last node
                     pre.next = null;
                 } else {
                     pre.next = cur.next;
@@ -241,33 +241,33 @@ export class DLList<T> {
     // else from the current node back to head
     // if n great the distance between currnode and the head node,
     // then return the head node ,else return Nth node before the curr.
-    public back(n:number, curr?:Node<T>):Node<T> {
-        if(this.listSize == 0 || curr == undefined) {
+    public back(n: number, curr?: Node<T>): Node<T> {
+        if (this.listSize == 0 || curr == undefined) {
             return this.head;
         }
 
         let cnt = 0;
-        while(curr) {
+        while (curr) {
             cnt++;
-            if(curr.prev == null) {
+            if (curr.prev == null) {
                 return curr;
             }
             curr = curr.prev;
-            if(cnt == n) {
+            if (cnt == n) {
                 return curr;
             }
         }
         return null;
     }
 
-    public count():number {
+    public count(): number {
         return this.listSize;
     }
 
     public display() {
         console.log("display the list: ");
         let node = this.head.next;
-        while(node) {
+        while (node) {
             console.log(node.data);
             node = node.next;
         }
@@ -276,7 +276,7 @@ export class DLList<T> {
     public dispReverse() {
         console.log("reverse display the list: ");
         let last = this.findLastNode();
-        while(last.prev != null) {
+        while (last.prev != null) {
             console.log(last.data);
             last = last.prev;
         }
@@ -295,31 +295,31 @@ export class CLList<T> {
         this.listSize = 0;
     }
 
-    public find(elem:T):Node<T> {
-        if(elem == null) {
+    public find(elem: T): Node<T> {
+        if (elem == null) {
             return null;
         }
         let node = this.head.next;
-        while(node != this.head) {
-            if(compare(node.data, elem)){
+        while (node != this.head) {
+            if (compare(node.data, elem)) {
                 return node;
             }
             node = node.next;
         }
         return null;
-     }
+    }
 
-    public insert(newElem:T, elem?:T) {
-        if(elem == undefined) {
+    public insert(newElem: T, elem?: T) {
+        if (elem == undefined) {
             this.insertTail(newElem);
             return;
         }
         let newNode = new Node<T>(newElem);
         let findNode = this.find(elem);
-        if(findNode == null) { // insert to tail
-            if(this.head.next == this.head) { // this first node
+        if (findNode == null) { // insert to tail
+            if (this.head.next == this.head) { // this first node
                 this.head.next = newNode;
-                
+
             } else {
                 let lastNode = this.findLastNode();
                 lastNode.next = newNode;
@@ -335,14 +335,14 @@ export class CLList<T> {
     public findLastNode(): Node<T> {
         let pre = this.head;
         let node = this.head.next;
-        while(node != this.head) {
+        while (node != this.head) {
             pre = node;
             node = node.next;
         }
         return pre;
     }
 
-    public insertTail(elem:T) {
+    public insertTail(elem: T) {
         let node = new Node(elem);
         let lastNode = this.findLastNode();
         node.next = this.head;
@@ -350,11 +350,11 @@ export class CLList<T> {
         this.listSize++;
     }
 
-    public remove(elem:T):boolean {
+    public remove(elem: T): boolean {
         let pre = this.head;
         let cur = pre.next;
-        while(cur != this.head) {
-            if(compare(cur.data, elem)) { // find the node
+        while (cur != this.head) {
+            if (compare(cur.data, elem)) { // find the node
                 pre.next = cur.next;
                 cur = null; // delete the node
                 this.listSize--;
@@ -370,7 +370,7 @@ export class CLList<T> {
         console.log("display the circle list: ");
 
         let node = this.head.next;
-        while(node != this.head) {
+        while (node != this.head) {
             console.log(node.data);
             node = node.next;
         }

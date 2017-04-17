@@ -12,7 +12,6 @@
     - [X] 双向链表（DLList)
     - [X] 环链表（CLList)
 - [X] 字典（Dict)
-- [ ] 散列（Hash)
 - [ ] 集合（Set)
 - [ ] 树（Tree)
     - [ ] 二叉树（BinaryTree)
