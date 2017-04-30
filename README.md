@@ -16,11 +16,23 @@
 - [X] 二叉树（BiTree)
     - [X] 二叉查找树（BST)
 - [X] 图（Grap)
-- [ ] 排序算法（Sort）
-- [ ] 查找算法（Search）
+- [X] 排序算法（Sort）
+    - [X] 冒泡排序（Bubble Sort)
+    - [X] 梳排序（冒泡改进版)（Comb Sort）
+    - [X] 选择排序 (Select sort)
+    - [X] 插入排序 (Insert Sort)
+    - [X] 希尔排序 （Shell Sort）
+    - [X] 快速排序 （Quick Sort)
+        - [X] 单基准快排（递归 & 非递归)
+        - [X] 双基准快排 （Dual Pivot)
+        - [X] 三路快排 (3 way)
+- [X] 查找算法（Search）
+    - [X] 顺序查找（Seq Search) *使用自组织数据*
+    - [X] 二分查找（Binary Search)
 
+### 补充：
+> 排序算法中还有一些算法书中介绍过的未在这里列出与实现，还有这些基础算法的改进升级版，比如上面的双基准快排和三路快排。其他的算法会慢慢被充
 
-（未完待续....)
 
 ### How To Run ＆ Test
 每个对应的数据结构都有一个test_XXX的测试文件，

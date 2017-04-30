@@ -24,6 +24,10 @@ export class Stack<T> {
         return this.top;
     }
 
+    public empty():boolean {
+        return this.top == 0;
+    }
+
     public clear() {
         this.top = 0;
     }

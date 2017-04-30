@@ -1,6 +1,7 @@
-import { Set } from "./Set";
+// import { Set } from "./Set";
 import {deepcopy, print} from "./util";
 
+let s1 = new Set<number>();
 
 let s = new Set<any>();
 s.add("David");
